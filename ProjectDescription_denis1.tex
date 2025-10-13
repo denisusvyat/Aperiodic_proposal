@@ -1,0 +1,1597 @@
+%-----------------------------
+%set the class of the document
+%-----------------------------
+\documentclass[a4paper,11pt,headings=normal]{scrartcl}
+
+%-------------------------
+%load some useful packages
+%-------------------------
+\usepackage{tgheros,tgtermes,tgcursor}
+\usepackage{blindtext}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+%\usepackage{tgheros,tgtermes,tgcursor}
+\usepackage[top=1.25cm,bottom=1.25cm,left=2.5cm,right=2.0cm,includeheadfoot]{geometry}
+\usepackage{graphicx}
+\usepackage[version=4]{mhchem}
+\usepackage{sfmath}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eurosym}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{shapes, positioning}
+\usepackage{enumitem}
+
+\usepackage[
+style=chem-angew,
+backend=bibtex8,
+mcite=true,
+doi = true,
+maxnames=7,
+minnames=7,
+subentry]{biblatex}
+\urlstyle{sf} 
+
+
+\addbibresource{SpinStateSwitches.bib}
+\addbibresource{citations.bib}
+
+%------------------
+%set the Koma fonts
+%------------------
+\renewcommand{\familydefault}{\sfdefault}
+\setkomafont{disposition}{\normalcolor\bfseries}
+\setkomafont{descriptionlabel}{\normalcolor\bfseries}
+\setkomafont{caption}{\footnotesize}
+\captionsetup{format=plain}
+\setkomafont{captionlabel}{\footnotesize\bfseries}
+\renewcommand*{\figureformat}{\figurename\ \thefigure. %
+}
+\renewcommand*{\tableformat}{\tablename\ \thetable. %
+}
+\renewcommand*{\captionformat}{}
+\addtokomafont{section}{\normalsize}
+%\addtokomafont{subsection}{}
+
+
+%-----------------
+%Header and footer
+%-----------------
+\usepackage[automark]{scrlayer-scrpage}
+\setkomafont{pageheadfoot}{%
+	\normalfont\normalcolor\footnotesize%
+}
+\clearpairofpagestyles
+%\cfoot{\pagemark}%center bottom
+\ifoot{
+  \vspace{-1.5cm}\\
+  \begin{minipage}{0.7\textwidth}
+    \footnotesize\ \\
+    \color{DFGBlue}\textbf{Deutsche Forschungsgemeinschaft}\\
+    \color{black}
+    Kennedyallee 40 $\cdot$ 53175 Bonn $\cdot$ postal address: 53170 Bonn\\
+    phone: +49 228 885-1 $\cdot$ fax: +49 228 885-2777 $\cdot$ 
+    postmaster@dfg.de $\cdot$ www.dfg.de
+  \end{minipage}
+}%inner (right) bottom
+\ofoot{
+  \vspace{-1.5cm}\\
+  \begin{minipage}{0.25\textwidth}
+    \raggedleft
+    \includegraphics[height=1.25cm,trim= 0 0 6cm 0,clip  
+    ]{dfg_logo_schriftzug_blau_4c}
+  \end{minipage}
+}
+\ihead{DFG form 53.01 -- 03/25}%inner (left) 
+%top 
+\ohead{page \pagemark\ of max. 17}%outer (right) top
+
+
+%---------------------------------------
+% some settings and commands that I like
+%---------------------------------------
+\newcommand{\bhl}{\color{blue}}
+\newcommand{\ehl}{\color{black}}
+
+%---------------------
+%define the DFG colors
+%---------------------
+\definecolor{DFGBlue}{RGB}{0,81,158}
+\definecolor{DFGGrey}{RGB}{143,152,157}
+
+%-----------------------------
+% add numbering for paragraphs
+%-----------------------------
+\setcounter{secnumdepth}{4}
+
+%------------------------------------
+%allow for highlighting of references
+%------------------------------------
+\AtEveryBibitem{%
+%\iffieldequalstr{annotation}{highlight}{\color{blue}}%
+\iffieldequalstr{annotation}{highlight}{\normalfont \bfseries}%
+}
+
+% a new centered table column type
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+
+
+\begin{document}
+%===============================================================================
+% preamble
+%===============================================================================
+
+\noindent\textbf{Project Description -- Project Proposals}\\
+\ \\
+\noindent\textbf{Denis Usvyat, Berlin}\\
+\ \\
+\textbf{Structure optimization and accurate energetics of closed-shell and open-shell defects using the aperiodic defect model}\\
+\hrule
+\ \\
+\ \\
+\noindent\textbf{Project Description}
+%===============================================================================
+% State of the Art and preliminary work
+%===============================================================================
+\vspace{-1em}
+\section{Starting Point}
+\subsection*{State of the art and preliminary work}
+%-------------
+% Introduction
+%-------------
+\noindent
+\textbf{Introduction} Local irregularities in otherwise periodic structures are causal factors across a wide range of phenomena in chemistry and physcis. Point defects in crystals or on surfaces are one example of such irregularities. Another important class of disrupted periodicity is represented by isolated or low-concentration adsorbates on crystalline surfaces. The fundamental and technological importance of such structural entities can hardly be overstated. For example, the vast field of heterogenios catalysis focuses on local chemical processes on surfaces, which additionally can host defects relevant for these processes. Other areas where defects can be important or even crucial comprise (opto-)electronics,\cite{..} spintronics,\cite{..} quantum technologies,\cite and other applicaton fields.
+
+The local electronic structure associated with a defect or an adsorbate can be rather intricate and often exhibit nonstandard behaviour, which is actually one reason of the very broad technologcal impact. For the atomistic-level understanding of the mechanisms behind this behaviour and a possibility to predict the properties of such materials, an accurate theoretical description of their electronic structure is essential. Unfortunately for high-level theoretical modelling of such systems is rather challenging. Firstly, the host crystals are effectively infinite systems and only translational symmetry makes them tractable. At the same time, a point defect or an adsorbate break translational symmetry creating formally an infinitely big cluster, which cannot be treated without introduction of an approximate model. A standard paradigm for electronic struture calculations for suc systems is density fucntional theory (DFT) within a supercell model (also reffered to as a periodic-defect model), where the defect is indroduced within a large periodically repeated cell. This approach is practical, yet, the inherent deficiencies of this approach may not not allow one to reach the desired accuracy. 
+
+With the DFT supercell calcualtions there are two conceptual sources of errors. Firstly the periodic defect model itself introduces unphysical interactions between the images of the defects, especially so when the defect introduces additional local polarity. Another source of a long-range error in this case is accumulated delocalied strong correlation due to the repeation of a strongly correlated  defect. Such errors in principle fade off with the size of the supercell. However, this decay can be very slow and the size of the afordable supercell may not be enough to reduce these parasitic interactions to an apreciable level. An even more conceptual problem arises when the defect is charged, as the periodically repeated excessive charge leads to a Coulomb catastrophe. To counteract this unphisicallity one has to include compensating ions or an artificial background charge that may effectively limit reliablilty of the results.
+
+The second source of error is DFT itself. DFT is generally known to provide a good accuracy vs computational cost ratio. However, DFT functionals does not form a hierarchy of progressivly more accurate models converging to the exact solution. As a result, it becomes very difficult to confidenty predict the accuracy of a given fucntional in each particular case and quantify its error. Furthrmore, as DFT struggles to capture strong correlation, so for complex defects with a multiconfigurational character the DFT description may evn be qualitatively wrong.
+
+The quantum chemical paradigm in contast to DFT does offer a methodological hierarchy allowing systematic improvment of the accuracy in both weakly and strongly correlated systems. One of the The problem of high-level quantum chemical methods is a high scaling of the computatinal cost making applicability of this methods esprohibitive for extended systems. In the last  decades several approaches have been developed that allowed one to neverthes apply 
+
+cell, wsich periodically repeated with a introduced inside a larger supercell  i.e. periodic    calculating such systems  defects or adsorbates is a  such a system directly, so a model has to be  has to introduce an approximate model.  Such a system is obvisly cannot be treA standard way of   to it is essential to be abl,e to theoretically model an atomistic level perties of such materials, their atomistic modeling at the atomistic level becomes essential. of  atomistically be model      The reaons is that the  of      local reeffect of a defect or the adsoprbate  There is a strong interplay between a defect or adsorbates and the host crystal 
+
+
+
+are   As such irregularites one can defects      features in otherwise Point defects in crystals and on surfaces  
+
+
+A correct description of local ground and excited states 
+associated with surface defects or adsorbed molecules is crucial for understanding 
+the mechanisms 
+behind many chemical and physical phenomena, such as heterogeneous catalysis, 
+corrosion, surface photochemistry, spin-state switching on adsorbed molecules, 
+etc. As of yet, the lack of conclusive atomistic-level understanding of the key 
+factors that govern relative energies impedes a rational design 
+of tailored molecular building blocks for functional materials and/or devices. 
+For obvious reasons, quantum-chemical calculations are ideally suited to 
+complement experimental efforts to gain more insight into the aforementioned 
+factors. However, reproducing and predicting the experimentally observed behavior 
+of such systems is still a formidable challenge for modern quantum-chemical 
+methods, particularly when transition-metal ions are involved. The challenges for 
+quantum-chemical simulations are multifaceted: Firstly, strong or static electron 
+correlation effects are essential to accurately describe the relative energies 
+in such systems.\autocite{Pierloot2018, Radon2018, Gagliardi2019a, Mauracher2020, 
+Roemelt2021} States with a considerable 
+static correlation component are also commonly denoted as "multireference", since a 
+single determinant is not sufficient to describe them even with qualitative 
+accuracy, regardless whether it is used alone as in HF or KS-DFT or as a reference 
+for a post-HF treatment.  Secondly, the involvement of transition-metal
+ions demands an accurate treatment of dynamical electron correlation 
+to obtain realistic results.\autocite{Reiher2016, Pierloot2018, Roemelt2021} 
+Despite considerable technical and conceptual progress in density functional 
+theory (DFT), for strongly correlated systems DFT predictions may scatter 
+immensely from one functional to another and the performance is non-uniform across 
+different transition-metal centers or ligands. Pure single-reference quantum-chemical methods 
+are also known to be inaccurate for such systems. Thus for 
+strongly correlated molecules, a high-level multireference treatment largely 
+remains the sole robust source of reliable reference data (see, e.g., a 
+comprehensive benchmark study on Fe(II) complexes\autocite{Reimann_2022}).\\
+Two of us (CJS and MR) have gained  experience in utilizing modern 
+multireference electronic-structure methods to predict relative 
+energies and molecular properties of mononuclear and dinuclear transition-metal 
+compounds.\autocite{Pantazis2018, Krewald2019, Nam2024, Hirsch2025} 
+However, this level of theory is not sufficient in the present context because 
+thirdly, the interaction between the defect (or the adsorbate) with the substrate 
+and, in case of high defect concentration, with the neighboring defects, may 
+significantly alter the energy landscape.\autocite{Kuch2021, Ruben2021}  
+%Moreover, changes in the environment, e.g. change of potential, might even be 
+%utilized to induce the physical or chemical process of interest. 
+Thus, understanding environmental 
+effects is absolutely vital to design new systems with required features in a  
+bottom-up approach. At the moment, existing theoretical protocols can cope with 
+two of the three mentioned challenges at best. It is our goal to develop 
+computational approaches that will overcome this limitation and describe ground 
+and excited state potential energy surfaces for defects with a 
+multiconfigurational electronic structure or 
+%CJS: What do you mean with "multireference defect"? Maybe a "defect with a multi-configurational electronic structure"?
+adsorbates on insulator, semi-conductor or metallic surfaces with high accuracy 
+at a reasonable computational cost. As will be outlined in detail below, our 
+consortium features the required expertise in the involved fields to achieve 
+this goal.\\
+
+%---------------------------
+% MR Methods for Molecules
+%---------------------------
+\noindent
+\textbf{Modern multireference methods for molecular systems} 
+The core task of the envisaged set of quantum-chemical methods is to accurately 
+compute the relative behavior of potential energy surfaces that belong to 
+the ground and low-lying excited states associated with surface defects or 
+adsorbates. Particularly interesting here are those that include transition-metal 
+atoms which usually have a rich landscape of energetically close 
+states.\autocite{Chan2019, Hirsch2025} 
+The underlying electronic excitations might not be exclusively located 
+on the metal center but can also involve redox-non-innocent ligands, thereby 
+leading to electronic states that are dominated by configurations with multiple 
+open shells.\autocite{Nam2024} In both cases, the involved 
+electronic states are potentially strongly correlated and multiconfigurational. 
+Accordingly, the prediction of relative state energies in transition-metal
+complexes is a popular testing field for modern multireference (MR) 
+electronic-structure methods.\autocite{Radon2018, LiManni2021, 
+Pantazis2022, Evangelista2024}\\
+%----------------------
+%clear the footer again
+\ifoot{}
+\ofoot{}
+%----------------------
+%If multiple open shells are present, magnetic exchange coupling between the 
+%local spins constitutes another important factor to relative spin state 
+%energies. The phenomenon is usually described by a single parameter $J_{AB}$ 
+%per pair of local spins $(\hat{\mathbf{S}}_A,\hat{\mathbf{S}}_B)$ that enters 
+%the Heisenberg-Dirac-van Vleck Hamiltonian
+%\begin{align}
+%\hat{H}_{HDvV} &= -2\sum_{A>B} J_{AB} \hat{\mathbf{S}}_A,\hat{\mathbf{S}}_B
+%\end{align}
+%A negative value of $J_{AB}$ corresponds to antiferromagnetic coupling whereas 
+%a positive value indicates ferromagnetic coupling in the electronic ground 
+%state. In both cases the magnitude of $J_{AB}$ is a measure for the energy 
+%difference between the spin states that differ by their relative orientation 
+%of 
+%the local spins. Accurate computations of $J$ based on MR electronic 
+%structure  
+%are challenging and require customized choices of static and dynamical 
+%electron 
+%correlation treatment.\autocite{Guihery2014, Pantazis2018, Krewald2019, 
+%Roemelt2021a}\\
+ As is noted above, it is consensus in the community that relative energies in 
+transition metal-complexes (mononuclear and polynuclear) are significantly 
+influenced by static and dynamical electron correlation effects. Therefore, a 
+realistic description on a physically sound basis of the underlying electronic 
+structure and hence the corresponding PES can only be achieved when both 
+effects are treated simultaneously. 
+%As outlined elsewhere in 
+%detail,\autocite{Roemelt2021} a plethora of MR methods exist that fulfill these 
+%requirements. However, the computational scaling of many methods impedes their 
+%application to extended systems, e.g. complexes with (bulky) organic ligands. 
+Owing to their favorable cost-to-accuracy ratio, methods that rely on a 
+second-order perturbation treatment of dynamical electron correlation, such as 
+CASPT2\autocite{Roos1992} and NEVPT2\autocite{Malrieu2002} on top of a complete 
+active space self-consistent field (CASSCF) reference, are popular choices for 
+computational methods in this context. If the number of strongly correlated 
+electrons and orbitals exceeds 16-18, the active space full-CI problem in the 
+CASSCF procedure is solved only approximately within a selected CI 
+Ansatz,\autocite{Evangelista2016, Umrigar2016a, 
+HeadGordon2020, Neese2021, Hoffmann2020, Roemelt2023} the density matrix 
+renormalization group (DMRG) approach\autocite{Chan2016c, 
+Reiher2020}, or similar methods. The Roemelt research group at HU Berlin has 
+developed the \textbf{Hum}boldt \textbf{M}ulti\textbf{r}eference 
+(HUMMR)\footnote{download for free at 
+https://scm.cms.hu-berlin.de/hummr-dev-team/hummr} 
+program from scratch with the aim of conducting such calculations 
+efficiently.\autocite{Roemelt2019} Formerly named MOLBLOCK, HUMMR has been 
+designed to describe molecular systems with many strongly correlated electrons. 
+Accordingly, HUMMR features an efficient MCSCF module that can utilize 
+different selected-CI approaches, CIPSI and heatbath-CI 
+(HCI),\autocite{Roemelt2023}  or an interface to the block2 DMRG 
+implementation.\autocite{Chan2023} Recently, the efficient  
+implementation of nuclear gradients for state-averaged heatbath-CI (HCI) SCF has 
+been reported.\autocite{Roemelt2025} Utilizing the corresponding active-space 
+densities, an implementation of the strongly contracted variant of 
+NEVPT2 is able to describe dynamical electron 
+correlation.\autocite{Pantazis2018, Roemelt2020a} In addition, a variant of the 
+adiabatic connection method proposed by Pernal (AC0)\autocite{Pernal2024} is 
+currently being developed in the Roemelt lab. Particular focus 
+in the HUMMR development is put on spin-adaptation\autocite{Roemelt2022} so 
+that all computed wavefunctions are spin pure and spin contamination is avoided 
+by construction.\\
+% If spin adaptation is not explicitly forced, e.g. when a pure 
+%Slater-determinant basis is utilized, spin contamination might easily occur 
+%(even unnoticed by the user) and taint results.\autocite{Holthausen2023}\\
+%\noindent
+%At this point, it should be noted that while density functional theory (DFT) is 
+%a popular choice to study the electronic structure of transition-metal 
+%complexes, the results heavily depend on the choice of functional and may 
+%differ substantially from more accurate results obtained from 
+%wavefunction-based methods. Moreover, DFT is bound to fail as soon as 
+%multiconfigurational states need to be described, a situation frequently met in 
+%systems with close-lying (spin) states.} \\
+
+%------------------------
+% Non-Conducting Surfaces
+%------------------------
+\noindent
+\textbf{Treatment of strongly correlated point defects and adsorbates on 
+non-conducting surfaces} For technological applications related to molecular 
+processes, crystalline surfaces offer a remarkably effective environment. Unlike 
+molecules, however, surfaces are essentially infinite objects (at least in two 
+dimensions), which requires appropriate handling.
+Surface electronic-structure problems are usually tackled using periodic 
+methods applied to slabs of a few atomic layers. 
+%In case plane waves 
+%are used, which are 3D-periodic, the slabs separated by a sufficiently wide 
+%vacuum region are also periodized in the third dimension. 
+A periodic treatment, however, adds further limitations on the level and quality 
+of the theoretical description. To a great extent, periodic calculations are 
+currently restricted to DFT. While DFT is very effective for structure 
+optimizations, the required quantitative accuracy for energy differences may not 
+be guaranteed, and in some cases DFT can even be qualitatively wrong, particularly 
+for strongly correlated cases. 
+%Yet, for weakly correlated systems, DFT performs on average acceptably well. 
+%Besides, for such systems a number of 
+%accurate periodic post-Hartree-Fock approaches have been developed and 
+%implemented in the past decade 
+%\autocite{pisani2008,Marsman2009,Booth2013_,usvyat2015,delben2,Booth2016,McClain2017,grueneis2018,Wang2020}
+% making it possible to benchmark 
+%DFT, assess its errors and produce high-quality data for machine-learning 
+%approaches.  
+%For strongly correlated systems, however, DFT is by far less 
+%reliable. 
+However, periodic multireference methods which could 
+potentially be used alternatively simply do not exist. As a 
+result, no standard protocol has been established so far for such systems, 
+while the existing DFT-based approaches and periodic single-reference post-HF 
+methods\autocite{pisani2008, Booth2013_, usvyat2015, delben2, 
+Booth2016, McClain2017, grueneis2018, Wang2020} alone cannot 
+be considered as universally reliable. As will be explained in detail below, the 
+objective of this proposal is to bridge this gap by developing a 
+multireference electronic-structure approach capable of an accurate description of 
+local strongly-correlated features on surfaces and formulating a robust protocol 
+for computational studies of such systems. This will not only allow us to carry 
+out the application studies planned for this project (\textit{see below}), but 
+also provide the community with a very valuable and long-awaited quantum-chemical 
+tool to study such materials. \\
+Importantly, in this project we will focus on strongly correlated 
+defects or adsorbates on a surface of an otherwise weakly correlated crystal. This 
+means that multireference treatment does not need to extend over the complete 
+system but can rather be applied only locally using an embedding scheme. 
+One possibility for such a scheme is a finite cluster approach (see
+e.g. Refs. \cite{Sousa2001,Lepetit2003}, where a cluster containing the
+multireference center and its surroundings is placed in a matrix of
+pseudopotentials and point charges mimicking the periodic
+environment. However, the accuracy of this model is rather modest as it can 
+easily be compromised by the rudimentariness of the environment representation, 
+arbitrariness of its parameterization, inability to describe the covalent 
+contribution to bonding between the active cluster and the environment among 
+other issues.\autocite{Lepetit2003} To avoid these problems altogether, our 
+approach will be based on the proper quantum periodic embedding.\\
+In the past two decades quite a number of periodic mean-field embedding 
+strategies have been proposed.\autocite{Jacob08, Manby2012, Libisch2014, 
+Goodpaster2014, Jacob2014, Stoyanova2014, masur2016, Libisch2017, usvyat18, 
+Chulhai2018, Cui2020, Jones2020, Pham2020, Hegely, WachterLehn2022, schaefer21, 
+christlmaier21, Berkelbach21, WachterLehn2022, Lavroff2024}  A periodic DFT or HF 
+embedding is expected to be very effective also for the problem in question. We 
+will start with the HF embedding that has been extensively developed in the recent 
+years by one of us (DU) and has proven to be effective for describing local weakly 
+or strongly correlated features in solids or on surfaces.\autocite{masur2016, 
+schutz2017, usvyat18, usvyat20, christlmaier21, mullan21, Lavroff2024} 
+%The periodic HF embedding approach implies a 
+%specification of an active fragment surrounding the defect. The orbitals of the 
+%%%fragment serve as a basis for any suitable 
+%post-HF treatment of the fragment, including multireference approaches. The 
+%occupied localized periodic HF orbitals, not included in the fragment, form the 
+%electronic part of the frozen embedding environment. The embedding field 
+%consists of the Coulomb and exchange contributions from the electronic 
+%environment, as well as of the Coulomb field from all the nuclei of the crystal. 
+%This embedding field is included in the fragment's one-electron 
+%Hamiltonian.\autocite{christlmaier21} When combined with high-level post-HF 
+%treatment of the fragment, this approach 
+%becomes invaluable for benchmarking energy differences related 
+%to local phenomena in crystals, e.g. defects or adsorbed molecules.
+%It becomes especially useful for strongly 
+%correlated defects, allowing for otherwise inaccessible multireference 
+%treatment.\\
+This Ansatz has certain advantages over a more common DFT embedding (as 
+well as disadvantages, which we address in the next subsection). Firstly, in 
+contrast to wavefunction-in-DFT type of embedding,  the whole periodic 
+system is treated within the same methodological frame, where the correlated 
+treatment is merely restricted to the orbital space of the fragment. It is 
+conceptually equivalent to the frozen-core approximation, just with the frozen 
+space extended to the environment. It is free of non-additive components and 
+double counting, which is a delicate issue in  DFT-based embedding schemes. As 
+a result, a simple expansion of the fragment leads to a smooth convergence of 
+the energy to its thermodynamic limit. If  the influence of the environment on the 
+target property is not very strong or cancels out in the energy 
+difference, this convergence is expected to be very fast.\\
+Secondly, within the HF embedding approach, the reduction of the finite-size 
+error can be achieved not only by expansion of the fragment, but also by an 
+increase of the embedding level, which is hardly possible within DFT embedding. 
+Going beyond the HF level for the embedding environment further speeds up 
+convergence of the obtained results with increasing fragment size. The most simple 
+approach for such an extension, which is readily available within the existing 
+software, is an uncoupled MP2 embedding.\autocite{mullan21} More sophisticated 
+schemes like, for example, uncoupled RPA embedding\autocite{schaefer21} or 
+tailored coupled cluster\autocite{kats20} can also be readily implemented.\\
+% The HF %embedding scheme is not restricted to the HF orbitals, as it is 
+%%possible to use 
+%also DFT orbitals from a preceding periodic DFT calculation.\\
+Very recently, one of us (DU) developed a HF embedding variant, 
+where the fragment with the defect is embedded in the mean field of a 
+non-defective crystal.\autocite{Lavroff2024} We refer to this scheme as an 
+``aperiodic defect'' model as opposed to the standard ``periodic defect'' 
+calculations 
+requiring periodization of the defect via supercells. In the embedded-fragment 
+context, the standard scheme periodically adds copies of the defect in the 
+periodic HF stage of 
+%CJS: to me (but I am no expert in this field) "periodizes" sounds strange. Maybe "adds periodic copies" or something like this?
+the calculation and the unphysical defect images obviously affect the embedding 
+field. The aperiodic defect model, apart from the obvious efficiency gains at 
+the periodic HF stage of the calculations, which can now be run using the 
+primitive cell rather than a supercell, offers additional important conceptual 
+advantages. Due to the absence of non-physical defect images in the 
+calculation, it is free from their influence on the initial HF state, the localization of orbitals, embedding field, charge or spin accumulation, etc. Therefore, when the in situ defects are well isolated from each other, this model is expected to 
+be particularly effective. Yet, when the concentration of the defects is high, the periodic defect model may offer a more realistic description.\\
+%In the periodic HF embedding schemes, the localized occupied HF (or DFT)
+%orbitals play a crucial role as they are used to differentiate between the 
+%fragment and the environment. For zero-gap systems the occupied orbital 
+%manifold cannot be well localized. Furthermore, for conducting systems it is 
+%%%important to allow electrons to flow to and from the defect region. Therefore, 
+%%%%the HF embedding 
+%approaches as presented above are applicable for non-conducting surfaces only. 
+%Alternative embedding strategies for metallic surfaces are discussed in the 
+%next subsection.\\
+\newpage
+%--------------------
+% Conducting Surfaces
+%--------------------
+\noindent
+\textbf{Treatment of defects on conducting surfaces}
+Since aforementioned HF embedding relies on an efficient localization scheme that 
+cannot be  realized in metallic systems, we propose a different approach for the 
+\textit{ab initio} study of strongly correlated molecules on conducting surfaces. 
+One of us (CJS) recently developed an alternative embedding scheme, which is 
+grand-canonical 
+in the number of electrons. In this scheme, the one-electron reduced density 
+matrix is updated self-consistently according to
+\begin{align}
+\mathbf{P} &= \frac{1}{2\pi} \int_{-\infty}^{\mu} \text{d}E \mathbf{G}_\mathrm{R}(E) \mathbf{\Gamma} \mathbf{G}_\mathrm{R}^\dagger(E)
+\label{eq_p}
+\end{align}
+with $\mu$ being the chemical potential and
+\begin{align}
+\mathbf{G}_\mathrm{R}(E) = \left( E \mathbf{S} - \mathbf{H} -\mathbf{\Sigma} \right)^{-1} \, 
+\label{ret_green}
+\end{align}
+and 
+\begin{align}
+\mathbf{\Gamma} = i (\mathbf{\Sigma} - \mathbf{\Sigma}^\dagger)
+\end{align}
+being the retarded Green's function\autocite{kadanoff1962,meir1992} and the 
+energy broadening associated with the self-energy $\mathbf{\Sigma}$, 
+respectively.\footnote{Note that for vanishing self-energy and an upper 
+integration limit $\mu$ chosen to be any energy between the HOMO and LUMO of a 
+molecule, the standard constant-charge density matrix is retained from 
+Eq.~(\ref{eq_p}).} The self-energy is pragmatically chosen to be 
+energy-independent and diagonal only with an energy shift and a 
+broadening term,\autocite{arnold2007} ultimately enabling analytic integration 
+of Eq.~(\ref{eq_p}) rather than requiring a numerical integration over the 
+complex contour\autocite{williams1982}. Conceptually, the interpretation as a 
+self-energy is hence partially lost in favor of the construction of a 
+parameterizable model mimicking the coupling to an electron reservoir.
+The parameters to be optimized in this approach are the 
+atomic-orbital dependent energy shift and broadening terms as well as the upper 
+integration limit in Eq.~(\ref{eq_p}), the chemical potential. The latter has 
+to be calibrated such that the effect of an applied bias potential can be 
+modeled ($\mu \rightarrow \mu_0 + U_\text{bias}$).\\
+\begin{figure}[h!]
+	\centering
+	\vspace{-0.5em}
+	\includegraphics[width=\textwidth]{images/gfe_model.pdf}
+	\vspace{-2.5em}
+	\caption{Panel A: Six-atom model system for a 40-atom 1D-periodic hydrogen 
+		ring, where the Green's function embedding is applied to the $s$-orbitals of 
+		the two outermost atoms. Panel B: Potential energy curves for the same system 
+		when perturbed by a positive charge at distance $d$. The curve for the 
+		periodic reference is shown in black, a large but nonperiodic model with 38 
+		atoms is shown in purple, the uncoupled six-atom model is shown as a green 
+		line, and the coupled six-atom model with optimized parameters is shown as a 
+		dashed green line. The inset highlights the error with respect to the 
+		reference.}  
+	\label{fig:pop_gfe}
+	\vspace{-1em}
+\end{figure}
+
+\noindent
+As a proof of principle study, we approximated the potential energy curve of a 
+1D-periodic ring of hydrogen atoms being perturbed by an approaching positive  
+charge with a linear chain of only six hydrogen atoms. The coupled model system 
+and the results are shown in Figure \ref{fig:pop_gfe} panels A and B, 
+respectively. This example demonstrates that this embedding 
+approach is capable of mimicking the electronic-structure properties of a low 
+band-gap system by proper adjustment of only few empirical parameters. 
+Coupled with an Poisson--Boltzmann type electrolyte solvation 
+model,\autocite{stein2019} this approach 
+is capable of describing the effect of applied bias on conducting surfaces both 
+for strong coupling, where the applied bias directly affects the orbital 
+occupancy of the compound  adsorbed on the surface, and weak 
+coupling where changes in the surface charge of the conducting surface modulate 
+the electronic structure of the adsorbate. The coupling of this mean-field 
+approach with an efficient treatment of strong correlation required for strongly 
+correlated adsorbates, e.g. transition-metal containing compounds presents a new 
+paradigm for the electronic-structure calculations of these systems.
+
+
+%===============================================================================
+% Objectives and work programme
+%===============================================================================
+\section{Objectives and work programme}
+
+\subsection{Anticipated total duration of the project}
+36 months
+
+\subsection{Objectives}
+This project aims to develop, test and establish \textbf{physically sound and 
+numerically accurate theoretical methods for the realistic description of 
+local strongly-correlated features, e.g. transition-metal-containing defects or adsorbates, on conducting and non-conducting surfaces.}  Importantly, the 
+envisaged methods will incorporate an atomistic and quantum-mechanical 
+representation of the surfaces and treat strong and dynamical electron 
+correlation with an appropriate level of theory.\\ 
+To achieve this goal for non-conducting surfaces we will employ the embedded 
+fragment methodological paradigm combining a high-level multireference 
+description of the defect and its surroundings coupled with the periodic 
+mean field. The interfaces between the periodic and molecular programs needed for 
+an efficient utilization of this approach will be implemented and robust 
+protocols for its practical application will be formulated and explored on a 
+set of prototype systems.\\
+For conducting surfaces, we will embed multireference electronic structure 
+calculations in an electron reservoir that is grand-canonical. In this way, we 
+aim to describe the effects of electron flow and bias potentials on the 
+substrate realistically.\\
+Despite its high degree of sophistication, our planned work concerning 
+non-conducting surfaces has a high chance of success as the involved method 
+development is straightforward. In contrast, the final tasks of the envisaged development of 
+methods to describe conducting surfaces constitute a high-risk/high-gain 
+scenario. 
+%Finally, it should be noted that the envisaged work in this funding 
+%period lays the \textbf{necessary methodological foundation for potentially 
+%many collaborations with experimental groups} within the priority programme and 
+%beyond the SPP. Already at this stage, \textbf{our methods and know-how will be 
+%used in collaboration with multiple consortia of the priority programme 2491}: 
+%1) Sarkar (Stuttgart), van Slageren (Stuttgart) and Krewald (Darmstadt) 2)  
+%L\"utzen (Bonn), McConnell (Siegen) and Podewitz (Vienna) and 3) Rentschler  
+%(Mainz) and Drosou (Darmstadt). Owing to the length restrictions to 
+%this proposal we cannot go into any detail about the collaborative planned work 
+%here but refer to the project proposals of the respective consortia. 
+
+
+\subsection{Work programme including proposed research methods} 
+\noindent
+\textbf{PhD student 1 (Berlin)}\\
+\ \\
+\textbf{WP1: An interface for embedded-fragment multireference calculations on 
+non-conducting systems} The first work package will be devoted to the development 
+and implementation of the computational scheme that allows for multireference 
+electronic structure calculations on nonconducting surfaces. As
+mentioned above, we will employ the embedded fragment approaches implemented in 
+the Cryscor code, which have already demonstrated their high effectiveness in 
+different scenarios.\autocite{masur2016, schutz2017, usvyat18, mullan21, 
+christlmaier21, Lavroff2024} Below, we provide a brief outline of the conceptual 
+aspects of the embedding approaches within both a periodic and an aperiodic 
+defect model. A detailed description of the 
+\begin{wrapfigure}{l}{0.7\textwidth}
+	\centering
+	\vspace{-0.5em}
+	\includegraphics[width=0.7\textwidth, trim = 1.5cm 0 0.9cm 0 , 
+	clip]{images/aperiodic_chart_prop.pdf}
+	\caption{Periodic and aperiodic defect models and the workflows of the 
+	corresponding embedded fragment calculations} 
+	\label{fig:workflow}
+	\vspace{-1.5em}
+\end{wrapfigure}
+technical details can be found 
+elsewhere.\autocite{christlmaier21,Lavroff2024} In this project, we will employ 
+and test both schemes.
+The periodic defect model is well established, easy to 
+use and ideally suited for high defect concentration. The aperiodic 
+defect is more efficient and physically sound in case of low defect 
+concentration, but, since it is very new, not all essential features are yet 
+available (like, e.g. use of pseudopotentials for the defect atoms).
+Further 
+development of the aperiodic model functionality relevant for this project is 
+currently underway in collaboration with the group of Prof. Maschio, University 
+of Torino.\\
+Embedded fragment calculations consist of several steps as outlined in Figure 
+\ref{fig:workflow}.
+The first step is a periodic HF calculation and  
+localization of occupied orbitals using the AO-based periodic code Crystal.\autocite{Crystal17} In the periodic defect model, the defect and its periodic images in the respective supercells are already 
+included in this HF calculation. In the aperiodic defect model, periodic HF is 
+performed on a pristine non-defective slab, and the defect is introduced 
+\textit{a posteriori}.
+The next step is setting up the fragment. This is done by specification of a 
+subset of atoms surrounding the defect (i.e. the atomic fragment), which in turn defines the localized orbitals of the fragment.
+%Technically, this requires specifying a subset of atoms (i.e. the atomic 
+%fragment) providing substantial support for the fragment orbitals. 
+The localized occupied orbitals not included in the fragment 
+constitute the environment. This step is carried out by the 
+Cryscor program,\autocite{usvyat18} which is interfaced with Crystal.\\
+The choice of the fragment SCF orbitals for the post-HF treatment, denoted in the following as $p$, 
+$q$, $r$, $s$, depends on the model. As the periodic 
+defect model aims at the post-HF treatment alone,
+%the fragment Fock operator 
+%coincides with the periodic Fock operator. Therefore, the chosen subset
+%of the localized orbitals from the 
+%periodic HF calculation are also the trivial solutions of fragment's 
+%HF. Here, we also include localized virtual orbitals, which are constructed in 
+%the form of projected AOs (PAOs).
+these are the fragment orbitals from the periodic SCF - both occupied and virtual (for the latter we use the projected AOs), subjected to an in-fragment canonicalization. These orbitals are by construction 
+orthogonal to the occupied orbitals of the environment,
+%(i.e. to the localized 
+%occupied orbitals that are not included in the fragment)
+which guarantees 
+particle number conservation. Furthermore, the occupied orbitals and virtual 
+orbitals of the fragment are mutually orthogonal, which allows for a direct 
+application of single-reference correlation methods. Within the envisaged 
+CASSCF Ansatz for the fragment, these orbitals serve as basis functions (like 
+formal AOs with an identity overlap matrix) and at the same time as the 
+starting guess orbitals, i.e. the initial CASSCF orbital coefficient matrix is 
+an identity matrix.\\
+In the aperiodic defect model,
+%the periodic HF is not the solution for the 
+%fragment HF due to the manipulation of the defect atoms in the fragment. 
+%Therefore,
+the fragment undergoes its own SCF procedure, for which we use the actual 
+AOs from the fragment atoms as the basis orbitals. In order to maintain the 
+orthogonality between the fragment's orbital space and the environment, 
+the environment orbitals are projected out from these AOs.\\
+The division of the orbital space into the fragment and the environment allows 
+one to introduce the embedding field in the fragment's one-electron 
+Hamiltonian. For the periodic defect model the latter is defined as:
+\begin{eqnarray}
+h^{\mathrm{frag}}_{pq}&=&F^{\mathrm{per}}_{pq}-\sum_{i\in{\mathrm{frag}}}\left[2\left(pq|ii\right)
+  - \left(p i|i q\right)\right],\label{eq:h_frag}
+\end{eqnarray}
+where $i$ are localized occupied
+orbitals of the converged periodic HF solution, $F^{\mathrm{per}}$ is the 
+periodic Fock matrix, and the $(pq|rs)$ are electron repulsion integrals (ERIs) 
+%\begin{eqnarray}\label{eq:ERIs}
+%  \left(pq|rs\right)&=&\int d{\mathbf r}_1d{\mathbf r}_2
+%  \phi^*_{p}\left({\mathbf r}_1\right)
+%  \phi_{q}\left({\mathbf r}_1\right){ 1\over \left|{\mathbf r}_1-{\mathbf 
+%  r}_2\right|} 
+%   \phi^*_{r}\left({\mathbf r}_2\right)
+%  \phi_{s}\left({\mathbf r}_2\right).
+%\end{eqnarray}
+in chemical notation. With this definition, the embedding Coulomb and exchange 
+fields from the periodic environment are implicitly included in the external 
+potential:
+\begin{eqnarray}
+(V^{\mathrm{frag}}_{\mathrm{ext}})_{pr}&=& \left<p\left| -\sum_{K}{Z_K \over 
+|{\mathbf r}-{\mathbf 
+R}_K|}\right|r\right>+\sum_{i\notin{\mathrm{frag}}}\left[2\left(pr|ii\right) - 
+\left(p i|i r\right)\right],\label{eq:Vext_frag}
+\end{eqnarray}
+where $R_K$ and $Z_K$ are the position and charge of the $K$'th nucleus, 
+respectively.\\
+In the aperiodic model, since the local geometry in the fragment is 
+manipulated, the one-electron Hamiltonian is augmented by the correcting 
+terms that cancel the nuclear attraction from the removed atoms and add that of 
+the new atoms of the defect: 
+\begin{eqnarray}
+h^{\mathrm{aper-frag}}_{pq}&=&h^{\mathrm{frag}}_{pq} + \left< p\left| \sum_{K\in{\mathrm{frag}}}{Z_{K} \over |{\mathbf r}-{\mathbf
+    R}_{K}|}\right|q\right>-\left< p\left| \sum_{K'\in{\mathrm{frag}}}{Z_{K'} \over |{\mathbf r}-{\mathbf
+                           R}_{K'}|}\right|q\right>.\label{eq:defect_h}
+\end{eqnarray}
+Here, the eliminated atoms are marked by the index $K$ and the added atoms by 
+the index $K'$.\\
+The current implementation of both approaches uses the FCIDUMP 
+interface\autocite{Handy1989a} to pass the one-electron Hamiltonian: $h^{\mathrm{frag}}_{pq}$ or $h^{\mathrm{aper-frag}}_{pq}$, and the two-electron 
+Hamiltonian  $(pq|rs)$ to a molecular program, e.g. molpro \cite{molpro}, for the 
+post-HF treatment.
+%In the periodic defect model, they are given in the basis of 
+%the fragment's canonicalized occupied and virtual orbitals (as explained 
+%above): $h^{\mathrm{frag}}_{pq}$ and $(pq|rs)$. In the aperiodic defect model, 
+%the Hamiltonian matrices are written in the basis of the fragment's HF 
+%orbitals, obtained in the fragment's SCF. Optionally, in this approach the 
+%basis of the L\"owdin-orthogonalized fragment AOs can also be used. With those, 
+%an additional truncation of the fragment orbital space (like e.g. frozen core 
+%approximation) is not possible, but such a basis has the advantage of providing 
+%a starting orbital guess for CASSCF other than the HF one. Regardless of the 
+%approach, the molecular program reads in these quantities as formal AO 
+%integrals. \\
+Despite the conceptual simplicity of the FCIDUMP format, efficiency issues 
+restrict its use to fragments with just a few hundred orbitals at most. First 
+of all, the sheer size of the FCIDUMP file, which grows quartically with the 
+number of fragment orbitals, becomes simply too big for practical applications 
+already for fragments of modest sizes. Secondly, if the fragment's post-HF 
+treatment is restricted to second-order perturbation theory, the calculation 
+of the complete set of the two-electron integrals $(pq|rs)$ may quickly 
+constitute an unnecessary computational bottleneck for the whole calculation.\\
+In fact, the embedded fragment approach, as implemented in Cryscor, actually does 
+not have to deal with the 4-index integrals. It is based on the well-established
+density fitting (or resolution-of-the-identity (RI)) approximation, 
+which factorizes two-electron four-index integrals according 
+to\autocite{Feyereisen1993}  
+\begin{eqnarray}
+	(pq|rs) &\approx& \sum_{PQ} (pq|P) V^{-1}_{PQ} (Q|rs) 
+	= \sum_{PQR} (pq|P) J^{-\frac{1}{2}}_{PQ} J^{-\frac{1}{2}}_{QR} (R|rs)= \sum_{P} B^P_{pq} B^P_{rs} \label{eq:RI}
+\end{eqnarray}
+Here, indices $P$, $Q$ and $R$ refer to auxiliary basis functions, and $J$ 
+denote the metric matrix of two-index Coulomb integrals. An efficient 
+evaluation of the one-electron Hamiltonian, eq. \eqref{eq:h_frag}, directly 
+employs the 3-index quantities $B$.\autocite{Lavroff2024} 
+Therefore, the 
+computationally expensive assembly (eq. \eqref{eq:RI}) is carried out 
+solely for the purpose of the FCIDUMP interface. 
+Rewriting the interface to 
+pass the three-index quantities rather than the 4-index ones will effectively 
+eliminate the need for this expensive step and will allow us to process 
+fragments of up to several thousand orbitals.\\
+%That will be the first goal of WP1.
+The $B^P_{pq}$ quantities will be then read in by the HUMMR program 
+and processed directly in MR electronic-structure calculations, most notably of 
+the MCSCF and NEVPT2 type. Importantly for this level of quantum-chemical 
+treatment, an assembly of the full set of 4-index orbitals is not required, as 
+many contractions are done directly with the 3-index quantities, e.g. in 
+RI-AO-direct full Newton-Raphson (FNR) optimizer that employs true second-order 
+optimization to the orbital coefficients including coupling to CI 
+coefficients.\autocite{Roemelt2025} Remaining 4-index integrals are limited to 
+orbitals subsets only, e.g. $(ia|jb)$.\\
+%Although the set of $\{B^{P}_{pq}\}$ will be utilized in many different places 
+%the HUMMR program, the required changes to the program are (mostly) 
+%limited to the central integral generation and processing module that in turn 
+%is utilized in all other modules. One exception is the RI-AO-direct full 
+%Newton-Raphson (FNR) optimizer that employs true second-order optimization to 
+%the orbital coefficients including coupling to CI 
+%coefficients.\autocite{Roemelt2025} The current 
+%implementation achieves high efficiency through direct contraction of 
+%$(pq|P)$-AO-integrals with transformed CI coefficients. If FNR optimization 
+%is found to be required to achieve stable convergence of the MCSCF procedure 
+%during the proposed computational studies in WP2 and WP3, the 
+%contraction pattern needs to be adapted to the new set of $B^P_{rs}$ 
+%integrals. 
+Implementing the interface between Cryscor and HUMMR based on 
+three-index quantities and adaptation of the HUMMR code to process those 
+integrals will conclude the first part of WP1. Once finished, it will also be a 
+milestone that initiates our work on WP2, as it will allow for direct usage of 
+the embedding fragment 
+approach in applications to spin-state switches on non-conducting surfaces.\\
+Another important goal of WP1 will be establishing a robust protocol for using 
+the embedded fragment approach for multireference defects. One of the major aspects of such a protocol 
+will be a (semi-)automatic setup of a sufficiently large but affordable 
+fragment space. It will be important to include all essential 
+orbitals required for both dynamic and static correlation without 
+unnecessary inflation of the fragment. A standard approach based on the 
+distance to the center of the defect or the defect seed atoms may be reasonable 
+for weakly correlated defects, but for strongly correlated ones it may add 
+unnecessary atoms and, at the same time, miss some essential ones. We will thus 
+develop an adaptation of the ASS1ST approach already implemented in 
+HUMMR.\autocite{Roemelt2019, Roemelt2020} In its original formulation, ASS1ST 
+identifies strongly correlated orbitals in open-shell systems based on 
+unrelaxed densities from first-order $N$-electron valence state perturbation 
+theory (NEVPT). In the course of WP1 the code will be altered such 
+that not only unrelaxed densities will be computed but also pair energies. 
+These will in turn be utilized to select important atoms for dynamic electron 
+correlation. In this way, the fragment and active orbital spaces will be chosen 
+based on well-defined quantities. To ensure affordability of this scheme, the 
+pair energies will be computed only during an initial ASS1ST run with a minimal 
+active space, while the active-space selection might entail multiple runs with 
+different active space sizes, although usually only one or two runs are 
+necessary.\autocite{Roemelt2020a,Nam2024} Test runs for the adapted ASS1ST 
+scheme will be carried out on prototypical but realistic systems in close 
+cooperation with WP2.\\
+
+
+\noindent
+\textbf{WP2: Heterogeneous catalysis with single-atom catalysts}
+In the last decade a very promising paradigm has emerged in heterogeneous 
+catalysis and photocatalysis based on the use of single-atom catalysts (SACs). A 
+SAC is an center (usually transition or noble metal atom) or small groups of atoms 
+adsorbed on a pristine surface or incorporated into a surface defect that 
+facilitates the catalytic process. SAC-based heterogeneous catalysis is currently 
+an intensively expanding field of research as such materials offer essential 
+benefits compared to nano-particle or bulk catalysts, at least for certain 
+reactions. For recent reviews on these materials we refer to Refs. 
+\cite{Wu_2025,Kment_2024,Li_2024}.\\
+%One obvious advantage of SACs is a substantially reduced cost for expensive 
+%catalysts like Pt, Ir, etc. due to their low concentration. Other advantages 
+%include improved catalytic activity and selectivity, tunability of the energetics 
+%of the catalytic process, higher stability, etc. 
+As far as the theoretical 
+modeling of catalytic materials is concerned, SACs allow for a uniquely close link 
+between theoretical models and experimental samples as well as between the model 
+catalysts and technologically relevant materials. Furthermore, SACs fit extremely 
+well to the embedding model presented above, making them an ideal testbed for our 
+method. And conversely, the possibility of a multireference treatment of SACs will 
+become highly beneficial for this field, which is currently dominated by DFT with 
+its known drawbacks (\textit{see above}).\\
+% As 
+%discussed above, the accuracy of the latter, for example, for reaction  barriers 
+%may be highly questionable, especially when transition metal atoms are 
+%involved.\\  
+For the first test application of our method we will focus on a photocatalytic hydrogen evolution reaction (HER) on a surface in the presence of a SAC. This reaction is very important from the fundamental perspective as well as technologically as a way to obtain H$_2$ using light harvesting. Photocatalytic process for this reaction\autocite{Ferriday_2021,Wu_2025} is based on creation of spatially separated hole-electron pairs in the catalyst crystal by absorbing light. The electrons, which migrate to the surface, serve as reduction agents for the adsorbed protons. The thus obtained hydrogen atoms react to form H$_2$ molecules, which then desorb. SAC in this case acts as co-catalyst, which traps the excited electrons and tunes the adsorption, desorption and diffusion processes.\\
+For our method, we also see this reaction as a prototype for general SAC-based heterogeneous catalytic processes, as it will involve calculation of ground, excited and charged state energy differences associated with the defect and reacting species. On this example we will investigate the behavior of the embedding scheme in order to develop a robust protocol as concerns the parameters of the model: the fragment size, the supercell size (for the periodic defect model), the embedding space (HF/DFT orbitals), basis set, etc.\\
+As the host catalyst in WP2 we will employ g-C$_3$N4. This material has recently 
+drawn a lot of attention in the context of photocatalysis due to its remarkable 
+properties.\autocite{Zhu_2021,Wu_2025} Similarly to one of the most successful 
+photocatalysts TiO$_2$ it is inexpensive, stable and non-toxic. In addition to 
+that, it has a smaller gap than TiO2 and absorbs light in the visible range, which 
+greatly facilitates its use as photocatalyst. Moreover, unlike TiO$_2$,  g-C$_3$N4 
+is a layered material, which becomes very instrumental as a computational model as 
+2D-sheets generally allow for higher efficiency, larger fragments, etc. 
+Experimentally, the highest efficiency in a photocatalytic HER (on TiO$_2$) has 
+been achieved with Pt nanoparticles; yet a number of other transition metals 
+demonstrate a comparable or just slightly inferior H$_2$ photocatalytic 
+production.\autocite{Wu_2025} Since in the aperiodic embedding model, 
+pseudopotentials are not yet available for the defect centers (\textit{see above}),
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\centering
+	\includegraphics[width=0.3\textwidth]{images/g-C3N4-Fe_2.png}
+		\caption{A corrugated g-C$_3$N$_4$ layer\autocite{Gracia_2009} with an iron atom anchored in none of the voids. The exact position of the iron atom and the local structure rearrangement are yet to be determined.}
+	  \label{fig:c3n4}
+\vspace{-1.em}
+\end{wrapfigure}calculations with this approach for heavy atoms like Pt will not 
+be accurate, as the relativistic effects from the core electrons will not be 
+captured. Therefore, we will study an iron atom anchored at the 
+void of g-C$_3$N$_4$, see Fig. \ref{fig:c3n4}, which experimentally was also shown 
+to be an efficient co-catalyst for HER.\autocite{Zhang_2019}\\
+At this point we would like to highlight that the approach that will be developed 
+by us allows for a proper many-body theoretical description of local 
+electronically excited states (and ground states, of course). In this picture, 
+"holes" and "electrons" and their "positions" which are commonly used terms to 
+qualitatively describe such states, are given by the excited state differential 
+density distribution with respect to the ground state: a ``hole'' is the density 
+depletion and the ``electron'' is the density gain. In this way, the localization 
+(trapping) of the electron and the hole can be directly analyzed with our method.\\
+%Heterogeneous photocatalysis even without a SAC is a complicated physical process 
+%%%involving an excited state of a periodic system. A proper many-body theoretical 
+%%%%description of excited states in solids is very difficult and scarce, while 
+%%%%%standard modeling of photocatalysis remains at the level of the crude 
+%%%%%%one-electron band-structure picture. The accuracy of such a model is 
+%%%%%%qualitative 
+%%%%%%%at best, especially so if a strongly correlated SAC is involved. The 
+%%%%%%%embedding 
+%%%%%%%%approaches developed in the course of this work will for the first time 
+%%%%%%%%provide 
+%%%%%%%%%the correct many-electron multireference treatment for both ground and 
+%%%%%%%%%excited 
+%%%%%%%%%%states, yet remaining withing the periodic framework.\\
+%An electron trapped in the SAC region ia actually a part of a charge-transfer 
+%excited state, into which the system transitions once a photon has been absorbed. 
+%Qualitatively, this excited state is represented by a ``hole'' and an ``excited 
+%electron'', which are expected to be spatially separated from each other. Within 
+%our many-electron description, the holes and excited electrons and their 
+%``positions'' are  given by the excited state differential density distribution 
+%with respect to the ground state: a ``hole'' is the density depletion and the 
+%``electron'' is the density gain. In this way, the localization (trapping) of the 
+%electron and the hole can be directly analyzed with our method. Yet, if the hole 
+%is not trapped and remains delocalized very large fragments may be required to 
+%encompass it. In this case a the trapped electron and its involvement in the 
+%photocatalytic process can be modeled by an explicitly charged fragment. Note 
+%that 
+%in contrast to the periodic DFT formalism, in our model charged fragments pose no 
+%conceptual difficulty as the excess charge is not periodically replicated and 
+%thus 
+%does not require introduction of counterions or unphysical compensating 
+%background.\\
+To summarize, the goal of WP2 is three-fold. First of all, it is an application to 
+an important chemical process (photocatalytic HER on g-C$_3$N$_4$ with a single 
+atom co-catalyst) that will provide an unprecedented level of description and new 
+insights in the physics of this process. Secondly, extensive tests that will be 
+carried out in the course of this study will be used to formulate a protocol to 
+employ the embedded fragment approach in a broader context. The third goal of this 
+study, which can generally be seen as an important application of the new 
+technique, is benchmarking the accuracy of various DFT functionals. Since large 
+scale simulations, geometry optimizations, calculations of vibrational 
+frequencies, etc. will remain a DFT domain, it is important to be able to 
+systematically assess the accuracy of the employed DFT functionals for a given 
+system.\\
+The planned workflow of WP2 will be as follows. As the first step of WP2 we will 
+obtain the periodic-DFT-optimized structures of pristine g-C$_3$N$_4$ and 
+g-C$_3$N$_4$ with the anchored Fe atom using several GGa, Meta-GGA and hybrid 
+functionals. Next, we will find possible adsorption positions of protons, neutral 
+hydrogen atoms and H\textsubscript{2} molecules, as well as the diffusion and 
+reaction transition states, also using DFT. For the obtained structures will we 
+apply the embedded fragment approach to calculate the relevant energy differences: 
+adsorption and desorption energies, energy barriers and relative stabilities. It 
+will allow us to also determine how strongly-correlated this system is and assess 
+the performance of the employed DFT functionals. Finally we will model the actual 
+photochemical process by calculating the excited and charged states and 
+investigate the charge transfer between the surface and the hydrogen atoms. We 
+will furthermore extensively test the embedded fragment setup and its influence 
+on the results.\\
+%As an outlook of WP2 we will extend our studies to other SACs on  g-C$_3$N$_4$, 
+%for example Pt\autocite{Wu_2025} as well as other host substrates, e.g. TiO$_2$, 
+%CeO$_2$, CdS, etc. However, these studies will be most likely carried out already 
+%as follow-up projects.\\
+\newpage
+
+\noindent
+\textbf{WP3: Spin-state switches on dielectric oxide surfaces}
+As the second application of the implemented method (WP3) we will focus on 
+describing a spin-switch molecule adsorbed on a surface. The unique properties of 
+molecular spin-state switches, i.e. systems that change their total
+spin upon the influence of external stimuli like heat, light, mechanical force etc, make them amenable for a
+wide range of applications, e.g. in smart pigments, sensors and in information
+processing and storage. It turns out to be very instrumental to install spin-state switches on surfaces, which, however, may have a significant effect on their properties.\autocite{Kuch2021,Ruben2021} 
+Experimentally, it has been found that interactions with a dielectric surface 
+have a quite peculiar effect on the spin-crossover (SCO) properties of 
+\ce{Fe(H2B(pz)2)2(bpy)]} 
+which is shown in Figure \ref{fig:FeSwitch1} and labeled \textbf{1} in the 
+following.\autocite{Dowben2017,Dowben2019a} If a 
+\begin{wrapfigure}{l}{0.3\textwidth}
+	\vspace{-2em}  
+	\begin{center}
+		\includegraphics[width=0.27\textwidth]{images/FeSwitch1.jpg}
+	\end{center}
+	\vspace{-1.5em}  
+	\caption{Spin crossover complex \ce{Fe(H2B(pz)2)2(bpy)]} labeled \textbf{1} 
+		in this proposal. Image reproduced from reference \cite{Dowben2019a}.}
+	\label{fig:FeSwitch1}
+	\vspace{-1em}  
+\end{wrapfigure}
+thin 
+film of \textbf{1} is 
+deposited on \ce{SiO2} or \ce{Al2O3} it is locked in the LS state, yet 
+irradiation with soft X-rays 
+induces LS$\rightarrow$HS switching at room 
+temperature.\autocite{Dowben2017} Moreover, in contrast to bulk \textbf{1},  
+films of \textbf{1} with a 
+thickness of 300 nm and 900 nm on \ce{Al2O3} show hysteretic SCO at low 
+temperatures of 5 K and 15 K, respectively.\autocite{Dowben2019a} A detailed 
+computational study of the intriguing interactions between \textbf{1} and the 
+surface and their influence on the potential energy surfaces involved in SCO  
+is another very good test case for the new composite electronic-structure 
+approach.\\
+The starting point for this work package is a detailed study of the HS and LS 
+potential energy surfaces and their minimum energy crossing point (MECP) for a  
+single molecule of \textbf{1} in vacuum
+and in solution, modeled by a polarizable continuum model. This study encompasses 
+optimization of the two minima, the MECP and scans along the minimum energy 
+pathway. Initial  structure optimizations for the three special points and the 
+connecting scans will be conducted with DFT. Subsequently, the electronic energies 
+at the corresponding nuclear configurations will be refined by means of MR 
+wavefunction methods, i.e. on the CASSCF + NEVPT2 level of theory. If necessary, 
+selected CI or DMRG will be utilized during the solution of the active space CI 
+problem. Additionally, the 
+structure optimizations and scans will be repeated on the CASSCF (or SCISCF) 
+level of theory. For this endeavor, the ORCA ExtOpt feature\autocite{Neese2020b} 
+that is suitable for minimum and MECP searches will be used as driver for MR 
+calculations with HUMMR. The difference between results obtained from vacuum and 
+solution phase calculations will be a first indicator of the influence of 
+electric fields on the SCO properties of \textbf{1}.
+Many steps during this (and other) rather straightforward part of the study will 
+be conducted by student research assistant (under the supervision of both the 
+supervisors and the PhD student). This serves the dual purpose of facilitating a 
+quick advancement of the study and training a member of the next generation of 
+potential PhD students.\\
+The first step towards studies of interactions between \textbf{1} and the 
+surface is the generation of a suitable surface model. Aluminium oxide films of 
+hundreds nm thickness, as reported in the experimental studies, cannot be modeled 
+directly. To model such films and their surfaces, we will use the 
+well-established slab model. In the embedded fragment approach, the complete 
+slab is treated at a relatively inexpensive periodic HF level, so slabs with up 
+to a few dozen atomic layers can be processed. The 
+aperiodic defect model is especially convenient in this respect, as it does not 
+require the supercell to place the defect.\\
+The hysteretic behavior of the SCO suggests that a strong effect may come from 
+a polarization of the film. The theoretically most stable and 
+experimentally observed Al$_2$O$_3$ (0001) surface has a single Al layer 
+termination.\autocite{Kurita2010} A slab terminated by such a surface at 
+the top and bottom is not polar. A polarity of a (0001) slab, however, 
+can be enforced by setting an alternative termination: an oxygen layer at the 
+bottom and Al double layer at the top (or vice versa), which may mimic a 
+possible polarity of the Al$_2$O$_3$ films. The influence of the polarization 
+can thus be investigated by studying the behavior of a spin-crossover complex 
+adsorbed on the polar slabs with progressively increased thickness. 
+Importantly, in the embedded fragment approach, the electrostatics of the polar 
+slab is taken into account within the embedding field, which is included in the 
+fragment one-electron Hamiltonian (see eqs. \eqref{eq:h_frag} and 
+\eqref{eq:Vext_frag}). We note in passing that our AO-based approach does not 
+need periodization of the slab in the third dimension, avoiding thus the 
+non-physical interaction between the polar slab images, which is commonly an 
+issue in plane wave calculations requiring correction.\\
+We will study the spin-crossover complexes on the surface with a 
+non-polar 9-layer Al$_2$O$_3$ (0001) slab model, which one of us (DU) has 
+already used within the embedded fragment approach in the context of water 
+adsorption on aluminum oxide.\autocite{lmp2_al2o3, mullan21} Using DFT 
+optimizations, we will identify candidates for the adsorption positions and 
+find the corresponding minima. These minima will be refined by recalculating the 
+bond distances and the relative energies between the different adsorption sites 
+and within each site between different states using the embedded fragment 
+approach and multireference treatment of the fragments. With the embedded 
+fragment calculations, we will perform 1D potential energy surface scans (with 
+all other degrees of freedom reoptimized by DFT) to locate the actual minima 
+for each state. These calculations will also serve as comprehensive tests to 
+refine the general protocol for embedded fragment calculations.
+To investigate the effect of the polarization of the films we will 
+then switch to polar slabs and apply the developed protocol, consisting of an 
+identification of the adsorption minima with DFT and refinement of the 
+potential curves with the embedded fragment multireference treatment. As a
+further extension of this study, we will add an additional molecule of 
+\textbf{1} on the surface to explore the effect of the coupling between two 
+spin-state switches.\\ 
+%\begin{wrapfigure}{r}{0.4\textwidth}
+	%\centering
+	%\vspace{-0.5em}
+%	\includegraphics[width=0.4\textwidth]{images/CoVT.eps}\\
+%	\small\textbf{LS} \hspace{3cm} \textbf{HS}
+%	\caption{A schematic representation of valence tautomerism in a class of Co 
+%		complexes that feature redox non-innocent ligands such as dioxolene. The 
+%		transition between the two isomers is accompanied by a change of the total 
+%		spin 	state.}
+%	\label{fig:CoVT}
+	%\vspace{-1.5em}
+%\end{wrapfigure}
+%As an outlook, in addition to the experimentally explored effect of the 
+%surface-substrate 
+%interactions on the SCO in \textbf{1}, we will extend the computational study 
+%on a second kind of spin-state switch. A Co-based valence 
+%tautomer\autocite{Boskovic2018} %(see Figure \ref{fig:CoVT})
+%is the ideal candidate for this study since the electronic states 
+%involved in SCO significantly differ from those in \textbf{1}. Accordingly,  
+%the additional calculations extend considerably beyond the experimentally 
+%observed effect and potentially yield insight into complex coupling effects of 
+%the local electronic 
+%structure and the surface. As the computational protocol and 
+%knowledge about the pitfalls of the methodology will be to a large extend 
+%establshed at this stage,
+%the next steps will be conducted by a 
+%student research assistant (under the supervision of both the supervisors and 
+%the PhD student). This serves the dual purpose of facilitating a quick 
+%advancement of the study and training a member of the next generation of 
+%potential PhD students.\\
+
+\noindent
+\textbf{Detailed work schedule}
+As outlined above, the research plan is divided in three work packages. The 
+major part of all work will be conducted by the to-be-hired PhD student. During 
+the implementation of the interface between the CrysCor and HUMMR programs as 
+well as in setting up the structure models, DU and MR will dedicate additional 
+time and effort to actively participate in the project. Furthermore, a student 
+research assistant will contribute to WP2 and WP3 as outlined above. The 
+planned chronological order of all work packages is given in Table 
+\ref{tab:WorkScheduleBerlin}. This includes dedicated time for the writing of 
+scientific publications.\\
+\begin{table}[h!]
+	\vspace{-1.5em}
+	\begin{center}
+		\begin{tabular}{l  l  C{1.2cm}  C{1.2cm}  C{1.5cm}  C{1.8cm} C{1.2cm}  C{1.2cm} }
+			\hline
+			\hline
+			\multirow{2}{*}{\textbf{WP}} & \multirow{2}{*}{\textbf{Title}} & 
+			\multicolumn{2}{c}{\textbf{Year 1}} & 
+			\multicolumn{2}{c}{\textbf{Year 2}} & 
+			\multicolumn{2}{c}{\textbf{Year 3}} \\      
+			\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} & & \textbf{I} & \textbf{II} & 
+			\textbf{III} & \textbf{IV} & \textbf{V}  & \textbf{VI}\\
+			\hline
+			\textbf{1} & Implementation &\cellcolor{DFGGrey} DU & \cellcolor{DFGGrey} 
+			MR & \cellcolor{DFGGrey} & & & \\
+			\textbf{2} & Photocatalysis &  &	& \cellcolor{DFGGrey} DU+MR & 
+			\cellcolor{DFGGrey} MR+SHK & \cellcolor{DFGGrey} SHK & \\
+			\textbf{3} & Spin-state switch & & &  & \cellcolor{DFGGrey} DU+SHK &
+			\cellcolor{DFGGrey} SHK &	\cellcolor{DFGGrey}\\
+			\textbf{X} & Writing Publications & & & \cellcolor{DFGGrey} & & 
+			\cellcolor{DFGGrey} & \cellcolor{DFGGrey}\\
+			\hline
+			\hline
+		\end{tabular}
+		\caption{Detailed work schedule for the proposed project. Cells labeled 
+			"DU", "MR" and "SHK" indicate work packages during which the work will be 
+			supported by Denis Usvyat, Michael Roemelt or a student assistant, 
+			respectively.}
+		\label{tab:WorkScheduleBerlin}
+	\end{center}
+\end{table}
+\vspace{-1em}
+
+\noindent
+\textbf{PhD student 2 (Munich)}\\
+
+\noindent
+\textbf{WP1: Direct minimization scheme for convergence acceleration} 
+Convergence of the Green's function embedded grand-canonical simulations is frequently difficult to achieve with self-consistent field algorithms since the orbital occupations are not fixed as in constant charge calculations. These additional degrees of freedom are only constrained between 0 and 2 for restricted and 0 and 1 for unrestricted orbitals. 
+While the direct inversion of the iterative subspace (DIIS) method\autocite{Pulay1980,Pulay1982} and variants thereof\autocite{kudin2002,hu2010,garza2012} aid the convergence in some cases, more stable convergence can be achieved by direct minimization of the orbital gradient.\autocite{voorhis2002}\\
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\centering
+	\vspace{-1em}
+	\includegraphics[width=0.5\textwidth]{images/stiefel_opt.jpeg}
+	\vspace{-2.5em}    
+	\caption{Illustration of the relation between gradient, tangent and geodesic on a curved manifold.}
+	\label{fig:stiefel}
+  \vspace{-1em}  
+\end{wrapfigure}\noindent
+The proposed model differs from standard constant-charge DFT or HF calculations 
+with integer orbital occupations and a separation of occupied and virtual spaces 
+in that all orbitals are eventually (partially) occupied. The orthonormality 
+constraint for the orbital coefficient vectors leads to a curved space on which 
+the optimization needs to be carried out. Hence, the geodesic, rather than the 
+gradient of the Lagrangian directly, guides the minimization procedure. With the 
+matrix containing the gradients of the Lagrangian written as $\frac{\partial 
+L}{\partial \mathbf{C}}$, the projection on the tangent space can be achieved 
+by\autocite{edelman1989}
+\begin{align}
+\mathbf{G} = \frac{\partial L}{\partial \mathbf{C}} - \mathbf{C}\left[ \frac{\partial L}{\partial \mathbf{C}} \right]^\dagger \mathbf{C}\, .
+\end{align}
+To find a stationary solution, i.e. a ground state for a chosen set of coupling parameters, optimization methods either follow the geodesic, or a retraction, which is a first-order approximation to the geodesic.\autocite{gao2021} Since the calculation of the geodesic involves a computationally expensive matrix exponential, we expect major savings from the second approach.\\
+In this work package, the PhD student will develop a new optimization algorithm that is capable of converging the reservoir-coupled embedding calculations reliably and fast, thereby providing a necessary prerequisite for the following work packages. To achieve this, the following steps will be taken:
+\begin{enumerate}[itemsep=0pt, topsep=0pt]
+\item Implementation of the orbital gradient and validation with finite differences.
+\item Implementation of a curvilinear gradient descent with line search and conjugate gradient method employing either the geodesic or the Cayley retraction.\autocite{zhu2017}
+\item Benchmark study for both algorithms and its combination with DIIS for the first iterations involving both the geodesic and the retraction approach. The goal is to identify the most efficient algorithm with a focus on metallic clusters for varying degrees of coupling to the electron reservoir.
+\end{enumerate}
+With the completion of WP1, electron-reservoir coupled mean-field calculations 
+can be carried out with reliable convergence. This is independent of the 
+mean-field approach chosen and can be either DFT-based if strong correlation is 
+expected to play a minor role, or based on the HF kernel. 
+The latter is the foundation for WP3, where a CASSCF calculation with fractional occupations will be developed to allow for the accurate multi-configurational treatment of transition-metal-containing spin-state switches bound to conducting surfaces.\\
+
+
+\noindent
+\textbf{WP2: Optimization of the coupling parameters and integration of the environment} 
+As stated above, the self-energy that eventually enters the density update in Eq.~(\ref{eq_p}) will be approximated as a diagonal matrix with an energy shift $\epsilon$ and a leakage term $\eta$
+\begin{align}
+\Sigma_{pp} = \epsilon_{pp} + i \eta_{pp} \, .
+\label{self_en}
+\end{align}
+Since the retarded Green's function in Eq.~(\ref{ret_green}) is evaluated in the underlying atomic orbital basis, the energy shift and leakage parameters have to be determined for each atomic-orbital for which the coupling to the electron reservoir is applied.
+For a cluster model of a conducting surface, the coupling to the electron reservoir is applied only to those atoms that are in contact with vacuum, i.e. the border atoms. In addition, the valence orbitals are most relevant for the chemical properties of conducting surfaces. Focusing on pure metal surfaces at this stage of the project, only about six to ten parameters need to be specified for a given coupled surface model. \\
+The other parameter that needs to be specified to define the model is the upper integration limit in Eq.~(\ref{eq_p}), the chemical potential $\mu$. It should be treated as a parameter since i) the chemical potential --- or Fermi level --- of a cluster surface model might differ significantly from that of the bulk and is therefore not easily accessible and ii) the parameterization of the self-energy as an energy-independent property defined by only few parameters compromises the physical interpretation of this quantity. Treating $\mu$ as a parameter that is carefully adjusted to quantitatively reproduce changes in observables upon increase of an applied bias is therefore our strategy to define a constant-potential cluster model for conducting surfaces. The ultimate goal of this proposal is to study spin-state switching for molecules on surfaces as an effect of an external stimulus such as an applied bias potential. The cluster model must hence be able to reliably reproduce the dependence on an applied bias potential for observables such as surface charge or small molecule binding energies. A linear relation between applied bias and chemical potential is expected for a perfect model ($\mu=\mu_0+a U_\text{bias}$) such that we pragmatically choose a low-order polynomial for our fitting procedure
+\begin{align}
+\mu=\mu_0+a U_\text{bias}+ b U_\text{bias}^2+ c U_\text{bias}^3 \, 
+\end{align}
+with four parameters $\mu_0, a, b$, and $c$. Unfortunately, since all 
+parameters directly influence the density update, a sequential optimization, 
+where the orbital-dependent parameters are determined first, followed by an 
+optimization of the parameters for the upper integration 
+limit, is unlikely to be successful. In contrast, a global optimization scheme 
+needs to be applied but due to  the low number of parameters to be optimized, 
+simple stochastic or zeroth-order schemes can be used.\\
+The choice of reference data for the parameter fitting is crucial. Since 
+grand-canonical or constant-
+\begin{wrapfigure}{r}{0.45\textwidth}
+	\centering
+	\vspace{-1em}
+	\includegraphics[width=0.42\textwidth]{images/coupling.png}
+	\vspace{-0.5em}
+	\caption{Illustration of the coupling model with solvation. The implicit 
+		electrolyte solvation box is shown in the top part of the figure. Only the 
+		atoms connected to vacuum (lower part of the figure) will be subject to the 
+		self-energy parameterization in Eq.~(\ref{self_en}).}
+	\label{fig:scoupling_model}
+	\vspace{-1em}  
+\end{wrapfigure}
+potential mean-field methods exist for periodic 
+calculations, we will use those to generate benchmark data for our 
+parameterization.\autocite{garza2018} We only employ observables and properties 
+that are known to change significantly upon application of a bias potential 
+since the study of the applied bias on the spin-switch properties of 
+surface-bound molecules is the focus of this project. 
+As stated above, surface charge and small molecule binding energies are obvious 
+target properties to be included in the fitting procedure, but more subtle 
+effects such as the degree of charge-transfer upon ion binding\footnote{This 
+can be evaluated by energy decomposition analysis schemes.} can be used to 
+reveal the potentials and weaknesses of the coupling 
+model.\autocite{alfarono2021} A dataset with on the order of 100 data points 
+per metal surface is likely to be sufficient for this optimization problem.\\
+It is important to note that the non-integer occupation resulting from this model directly leads to charged systems. Coupling to electrolyte solvation models is therefore very important especially since it is mandatory for the reference calculations where the periodicity demands overall charge neutrality. We will hence employ a Poisson--Boltzmann electrolyte solvation model developed by one of us\autocite{stein2019} in the Q-Chem electronic-structure software\autocite{epifanovsky2021} that will be the basis for this part of the project. For an illustration of the coupling model including the solvent for a non single-crystal surface structure see Figure~\ref{fig:scoupling_model}.\\
+\vspace{-0.5em}
+
+\noindent
+\textbf{WP3: Integration of the grand-canonical mean-field solution into the multiconfigurational framework} 
+In the first two work packages, a stable solver has been developed that 
+guarantees convergence for an adequately parameterized cluster model that is 
+coupled to an electron reservoir. If the mean-field calculation is carried out 
+with an accurate density-functional, this method can already be applied to the 
+study of complex surface-bound adsorbates such as spin-state switches. 
+Many spin-state switches, however, 
+contain one or more transition-metal centers. Accurate electronic 
+structure calculations then require a multi-configurational treatment, as 
+described above. In this work package, we will combine those developments with the 
+new 
+cluster embedding model for conductive surfaces. The coupling to the electron 
+reservoir will be applied on the surface cluster atoms bordering the vacuum, 
+which are distant from the surface-bound spin-state switch molecule. A 
+consequence of this spatial separation is that the atomic orbitals of the 
+coupled atoms do not contribute to the active-orbital space of the 
+multi-configurational calculations. We hence propose to base a CASSCF-type 
+orbital optimization scheme on the converged mean-field calculation provided by 
+the coupling approach. At this point, the reference determinant has 
+fixed-charge character but the orbitals are fractionally occupied.\\
+A multireference treatment of the adsorbed photoswitch requires a well-defined 
+total spin. Accordingly, the first step of the envisaged integration is a 
+projection of the grand-canonical reference determinant on a small set of 
+reference configuration state functions (CSFs) with well-defined spin. The set 
+of CSFs will be chosen such that the density matrix after projection is as 
+close as possible to the original matrix. During the subsequent CASSCF 
+calculation, the active space will be restricted to orbitals on the spin state 
+switch and surface atoms in its immediate vicinity. Orbitals 
+that belong to lower-lying metal atoms will be excluded from the orbital 
+optimization procedure comparable to the frozen core approximation 
+(\textit{see above}) to prevent complete migration of the active space to the 
+metal core. Importantly, the Hamiltonian that enters the active space full (or 
+selected) CI problem will be dressed according to the choice of 
+reference CSFs. In conventional CASSCF, the reference CSF features only doubly 
+occupied orbitals in the internal orbital space while here, we allow for 
+varying orbital occupation but with fixed CI coefficients reminiscent of 
+Zerner's configuration averaged SCF.\autocite{Zerner1989a} Moreover, 
+the nature of the coupling between the "internal orbital spin" and "active 
+space spin" has to be defined prior to the CASSCF calculation. Additionally, 
+also the NEVPT2 energy expressions can be adapted to the current form 
+of the wavefunction. In particular, the internal (and potentially also the 
+external) parts of the matrix elements over Dyall's Hamiltonian will have to be 
+altered. Moreover, despite potential electron holes in the internal orbitals in 
+one or multiple reference CSFs, no excitations into internal orbitals will be 
+allowed. Potentially, the NEVPT2 implementation might not be possible to 
+achieve in the time frame of this project and will be taken on in future work. 
+Acknowledging the complexity of the entire work package, both MR and CJS will devote a significant amount 
+of time and work to support the PhD student.\\
+Once the planned CASSCF method with fractional orbital occupation is successfully 
+implemented, it will be 
+tested on a Ni-porphyrin-based spin-state switch adsorbed on the Ag(111) 
+surface. As reported recently by Gruber and coworkers,\autocite{Gruber2020} 
+"switching of individual molecules is achieved by increasing the sample voltage 
+2.1 - 2.7 V for a few seconds." Notably, the switching of the local spin state 
+is induced (or accompanied) by a significant change of the coordination 
+environment of the central Ni atom. The workflow for this computational study 
+will roughly incorporate the same steps as the studies of non-conducting 
+surfaces described above. During the search for optimal binding sites and 
+modes, the available experimental data (e.g. STM images) will be utilized. 
+Besides a proof-of-principle for the developed method, it will be our main goal 
+to reveal the effect of adsorption and a bias potential on the local electronic 
+structure at the Ni center. In parallel to the aforementioned calculations with the 
+newly developed approach, we will conduct analogous calculations that use the 
+recently reported DFT embedding approach by Carter and 
+coworkers\autocite{Carter2024} implemented in the latest version of the VASP 
+program package for comparison.\\
+
+
+
+\vspace{-0.5em}
+\noindent
+\textbf{Detailed work schedule} The three work packages will mostly be carried out by a PhD student hired for this project. Christopher J. Stein will contribute directly to WP1 and WP2 since he developed the prototype of the coupling model. WP3 will further be directly supported by Michael Roemelt. A student will be hired for two years to generate reference data, test the implementation, and perform calculations with the Carter embedding approach for comparison. 
+\begin{table}[h!]
+	\vspace{-0.5em}
+	\begin{center}
+		\begin{tabular}{l  l  C{1.2cm}  C{1.9cm}  C{1.9cm}  C{1.2cm} C{1.2cm}  C{1.9cm} }
+			\hline
+			\hline
+			\multirow{2}{*}{\textbf{WP}} & \multirow{2}{*}{\textbf{Title}} & 
+			\multicolumn{2}{c}{\textbf{Year 1}} & 
+			\multicolumn{2}{c}{\textbf{Year 2}} & 
+			\multicolumn{2}{c}{\textbf{Year 3}} \\      
+			\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} & & \textbf{I} & \textbf{II} & 
+			\textbf{III} & \textbf{IV} & \textbf{V}  & \textbf{VI}\\
+			\hline
+			\textbf{1} & Convergence &\cellcolor{DFGGrey} CJS & \cellcolor{DFGGrey} 
+			CJS+SHK & & & & \\
+			\textbf{2} & Parameterization &  &\cellcolor{DFGGrey} CJS& \cellcolor{DFGGrey} CJS+SHK & 
+			 & & \\
+			\textbf{3} & MR embedding  & & & \cellcolor{DFGGrey} CJS+MR & \cellcolor{DFGGrey} all &
+			\cellcolor{DFGGrey} all &	\cellcolor{DFGGrey} CJS+MR\\
+			\textbf{X} & Writing Publications & & \cellcolor{DFGGrey}& &\cellcolor{DFGGrey} & & \cellcolor{DFGGrey}\\
+			\hline
+			\hline
+		\end{tabular}
+        \vspace{-0.5em}
+		\caption{Detailed work schedule for the proposed project. Cells labeled 
+			"CJS", "MR" and "SHK" indicate work packages during which the work will be 
+			supported by Christopher J. Stein, Michael Roemelt or a student assistant, 
+			respectively.}
+            \vspace{-2em}
+		\label{tab:WorkScheduleBerlin}
+	\end{center}
+\end{table}
+\vspace{-3em} 
+
+
+
+\subsection{Handling of research data}
+\vspace{-1em}
+All relevant research results will be published in peer-reviewed journals 
+together with all data required to reproduce our research results in 
+electronically available supporting information according to the publisher's 
+regulations. If supported by the publisher, the Supporting Information will be 
+stored in an open git repository.
+The same data and all additional data relevant to the proposed 
+research project will be stored on designated file servers and tape libraries. 
+Common open science practices such as early publication on preprint servers and open reviewing schemes will be pursued whenever possible.\\
+All parts of the HUMMR code generated during the proposed work will be made 
+publicly available under the GNU Lesser General Public License (version 3) as 
+part of the HUMMR program at the open git repository 
+\bhl \underline{https://scm.cms.hu-berlin.de/hummr-dev-team/hummr}\ehl. 
+The Cryscor code is available upon request to research groups for 
+non-commercial use.\\
+\vspace{-2em}
+
+\subsection{Relevance of sex, gender and/or diversity}
+\vspace{-1em}
+Not applicable.
+\vspace{-1em}
+
+%===============================================================================
+% Bibliography
+%===============================================================================
+\section{Project- and subject-related list of publications}
+\vspace{-1em}
+\setlength\bibitemsep{0.2\itemsep}
+\AtNextBibliography{\footnotesize}
+\printbibliography[heading=none]
+\newpage
+
+%---------------------------------------
+%reset the page counters and page layout
+\setcounter{page}{1}
+\ohead{page \pagemark\ of max. 8}%outer (right) top
+\ifoot{
+	\vspace{-1.5cm}\\
+	\begin{minipage}{0.7\textwidth}
+		\footnotesize\ \\
+		\color{DFGBlue}\textbf{Deutsche Forschungsgemeinschaft}\\
+		\color{black}
+		Kennedyallee 40 $\cdot$ 53175 Bonn $\cdot$ postal address: 53170 Bonn\\
+		phone: +49 228 885-1 $\cdot$ fax: +49 228 885-2777 $\cdot$ 
+		postmaster@dfg.de $\cdot$ www.dfg.de
+	\end{minipage}
+}%inner (right) bottom
+\ofoot{
+	\vspace{-1.5cm}\\
+	\begin{minipage}{0.25\textwidth}
+		\raggedleft
+		\includegraphics[height=1.25cm,trim= 0 0 6cm 0,clip  
+		]{dfg_logo_schriftzug_blau_4c.eps}
+	\end{minipage}
+}
+%---------------------------------------
+
+
+%===============================================================================
+% Supplementary information on the research context
+%===============================================================================
+\section{Supplementary information on the research context}
+\subsection{Ethical and/or legal aspects of the project}
+\subsubsection{General ethical aspects}
+Not applicable.
+
+\subsubsection{Descriptions of proposed investigations involving experiments on 
+humans, human materials or identifiable data}
+Not applicable.
+
+\subsubsection{Descriptions of proposed investigations involving experiments on 
+animals}
+Not applicable.
+
+\subsubsection{Descriptions of projects involving genetic resources (or 
+associated traditional knowledge) from a foreign country}
+Not applicable.
+
+\subsubsection{Explanations regarding any possible safety-related aspects} 
+\paragraph{“Dual Use Research of Concern"; foreign trade law}\ \\
+\noindent
+Not applicable.
+
+\paragraph{Risks in international cooperation}\ \\
+\noindent
+Not applicable.
+
+\subsubsection{Considerations on aspects of ecological sustainability in the 
+planning and implementation of the project}
+As outlined above, the focus of the proposed project is the development of new 
+embedding techniques for electronic structure methods. Such development is neither 
+associated with a high carbon footprint nor significant amounts of waste. Instead, 
+the proposed development of high-level \textit{ab initio} methods aims at 
+avoiding very expensive and likely unnecessary computations of the whole 
+(periodic) system at a high \textit{ab initio} level effectively reducing the 
+carbon emissions associated with such calculations. Furthermore, computations with 
+the to-be-developed embedding approaches will ultimately substitute at least 
+partially an explicit experimental chemical screening of materials, which will 
+allow for the reduction of toxic waste. 
+
+
+\subsection{Employment status information}
+Roemelt, Michael: Full professorship at the Humboldt University of Berlin.\\
+Stein, Christopher J.: Associate Professorship at Technical University Munich\\
+Usvyat, Denis: Permanent researcher position at the Humboldt University of 
+Berlin.
+
+\subsection{First-time proposal data}
+Not applicable
+
+\subsection{Composition of the project group}
+The project will be mainly conducted by the two to-be-hired PhD students with 
+help of the three supervisors (MR, CJS, DU) as detailed above.  Technical 
+supervision of the utilized computer clusters in Berlin will be provided by 
+Thomas Dargel who has a permanent position as system administrator in the 
+Roemelt group at HU Berlin. 
+
+\subsection{Researchers in Germany with whom you have agreed to cooperate on this project}
+Not applicable.
+%As mentioned in section 2.2. three other consortia that have submitted 
+%project proposals within the priority programme 2491 will collaborate with us:
+%\begin{enumerate}
+%	\item Sarkar (Stuttgart), van Slageren (Stuttgart) and Krewald (Darmstadt)
+%	\item L\"utzen (Bonn), McConnell (Siegen) and Podewitz (Vienna)
+%	\item Rentschler  (Mainz) and Drosou (Darmstadt)
+%\end{enumerate}
+%The consortia will either use (some of) the methods that will be developed 
+%within this project proposal or merely utilize multireference electronic 
+%structure calculations on spin-state switches conducted by us or by them with our direct support. 
+
+\subsection{Researchers abroad with whom you have agreed to cooperate on this 
+project}
+Not applicable.
+
+\subsection{Researchers with whom you have collaborated scientifically 
+	within the past three years}
+Ulf-Peter Apfel (Bochum), Thorsten Bach (TU Munich), Thomas Braun (HU Berlin), Witold Bloch (Adelaide), Guido Clever (TU Dortmund),
+Serena DeBeer (MPI CEC), Sascha Feldmann (EPFL), Robert Francke (Rostock), Martina Havenith (RUB), Martin Head-Gordon (UC Berkeley), Teresa Head-Gordon (UC Berkeley), Max Holthausen (Frankfurt), Konrad Koszinowski (U Göttingen), Heather J. Kulik (MIT), Ivana Ivanovic-Burmazovic (LMU Munich),
+Tobias Lau (HZB Berlin), Christian Limberg (HU Berlin), Wonwoo Nam (Seoul), 
+Frank Neese (MPI KoFo), Matthias Otte (G\"ottingen), Dimitrios Pantazis (MPI 
+KoFo), Kallol Ray (HU Berlin), Markus Reiher (ETH Zürich), Sven Stripp (TU Berlin), Edgars Suna (Riga)
+, Ali Alavi (MPI FKF), Daniel Kats (MPI FKF), Hans-Joachim Werner (Stuttgart), David Tew (Oxford), Veronique Gouverneur (Oxford), Alkwin Slenczka (Regensburg), Anastassia Alexandrova (UCLA), Lorenzo Maschio (Turin), Alexandre Tkatchenko (Luxembourg), Claudia Draxl (HU Berlin), Joachim Sauer (HU Berlin), Peter Saalfrank (Potsdam), Marek Krosnicki (Gdansk), Valera Veryazov (Lund), Franziska Hess (TU Berlin), John Herbert (Ohio State University), Shigeyoshi Inoue (TU Munich)
+
+%----------------------
+%Empty the footer again
+\ifoot{}
+\ofoot{}
+%----------------------
+
+\subsection{Project-relevant cooperation with commercial enterprises}
+Not applicable. 
+
+\subsection{Project-relevant participation in commercial enterprises}
+Not applicable. 
+
+\subsection{Scientific equipment}
+All computational resources required to conduct the proposed research are 
+already available to the participating groups. 
+
+\subsection{Other submissions}
+Not applicable. 
+
+\subsection{Other information}
+Not applicable. 
+
+%===============================================================================
+% Requested modules/funds
+%===============================================================================
+\section{Requested modules/funds}
+\subsection{Basic Module}
+\subsubsection{Funding for Staff}
+The work outlined in section 3 builds upon the work of two PhD students, one in 
+the research groups of DU and MR at HU Berlin, and one in the Stein research 
+group at TU Munich. Furthermore, during the work on WP2 and WP3 of the 
+Berlin-part of the project as well as small contributions to all WPs of the Munich part of the project, 
+two student research assistants (one in Berlin, one in Munich) will support the 
+PhD students as outlined above. Using the Personalmittelsätze 2025 of the DFG, 
+this results in the following fund request :\\
+\textbf{Berlin}
+\begin{align*}
+	\text{3} \times 0.67 \times \text{79.800  \euro} &=  \text{160.398 \euro}\\
+	\text{1} \times \text{12} \times \text{620 \euro} &=  \hspace{1.1em}\text{7.440 
+	\euro} 
+	\\[-0.75em]
+\underline{\hspace{3.5cm}}&\underline{\qquad \qquad \qquad}\\
+	\mathbf{\Sigma} &= \textbf{167.838 \euro} 
+\end{align*}
+\ \\
+\noindent
+\textbf{Munich}
+\begin{align*}
+	\text{3} \times 0.67 \times \text{79.800 \euro} &=  \text{160.398	\euro}\\
+  \text{2} \times \text{12} \times \text{620 \euro} &= \hspace{0.5em}
+  \text{14.880	\euro}\\[-0.75em]\ehl
+\underline{\hspace{3.5cm}}&\underline{\qquad \qquad \qquad}\\
+\mathbf{\Sigma} &= \textbf{175.278 \euro}
+\end{align*}
+
+
+\subsubsection{Direct Project Costs}
+\paragraph{Equipment up to Euro 10,000, Software and Consumables}\ \\
+\noindent
+In order to optimize periodic structures and conduct embedded cluster calculations following the Ansatz 
+introduced by Carter and coworkers, the latest version of the Vienna Ab initio 
+Simulation Package (VASP 6.2.0) has to be purchased for \textbf{2000 Euro}. 
+For extended functionalities of the HF embedding (e.g. to use g-type AOs in the 
+transition metal basis sets), the newest version of the Crystal code, to which 
+Cryscor is interfaced, -- Crystal23 -- should be purchased for \textbf{2000 
+Euro}. In total: \textbf{4000 Euro} for software purchases.
+All other required equipment/software for the proposed research is already 
+available to the research groups at HU Berlin and TU Munich.  
+
+
+\paragraph{Travel Expenses}\ \\
+Each PhD student will visit one national conference per year (e.g. Symposium on 
+Theoretical Chemistry (STC)). Starting with the second year, the PhD students 
+will visit one international conference per year (e.g. WATOC, ICQC). 
+All participating PIs will visit one national and one international conference per year.
+Additionally, the consortium will meet once per year in alternating locations 
+(Munich and Berlin) to discuss and synchronize the progress of both lines of 
+research. Finally, DU plans annual 1-2 week visits to Turin to work with the group of Prof. Maschio on expanding the functionality of the embedded fragment models. Consequently, the following funds are requested:\\
+i) Berlin
+\begin{align*}
+	\text{9} \times \text{1.200 \euro } &= \text{ 10.800 \euro 
+	}\\
+	\text{8} \times  \text{2.500 \euro } &= \text{ 20.000 \euro 
+	}\\[-0.75em]
+	\underline{\quad\qquad}&\underline{\qquad \qquad \quad\ }\\
+	\mathbf{\Sigma} &= \textbf{ 30.800 \euro }
+\end{align*}
+\ \\
+ii) Munich
+\begin{align*}
+	\text{6} \times \text{1.200 \euro } &= \text{ 7.200 \euro 
+	}\\
+	\text{5} \times  \text{2.500 \euro } &= \text{ 12.500 \euro 
+	}\\[-0.75em]
+	\underline{\quad\qquad}&\underline{\qquad \qquad \quad\ }\\
+	\mathbf{\Sigma} &= \textbf{ 19.700 \euro }
+\end{align*}
+\ \\
+iii) Consortium Meetings
+\begin{align*}
+	\text{3} \times\text{1.500 \euro } &= \textbf{ 4.500 \euro }
+\end{align*}
+\ \\
+iii) Trips to Turin
+\begin{align*}
+	\text{3} \times \text{1.300 \euro } &= \textbf{ 3.900 \euro }
+\end{align*}
+\ \\
+
+
+\textbf{Total Travel Expenses: 58.900 \euro}
+
+\paragraph{Visiting Researchers \normalfont{(excluding Mercator Fellows)}}\ \\
+Not applicable. 
+
+\paragraph{Expenses for Laboratory Animals}\ \\
+Not applicable. 
+
+\paragraph{Other Costs}\ \\
+Not applicable. 
+
+\paragraph{Project-related publication expenses}\ \\
+Not applicable. 
+
+	
+\subsubsection{Instrumentation}
+\paragraph{Equipment exceeding Euro 10,000}\ \\
+Not applicable. 
+
+\paragraph{Major Instrumentation exceeding Euro 50,000}\ \\
+Not applicable. 
+
+
+\subsection{Module Temporary Position for Principal Investigator}
+Not applicable. 
+
+\subsection{Module Replacement Funding}
+Not applicable. 
+
+\subsection{Module Temporary Clinician Substitute}
+Not applicable. 
+
+\subsection{Module Mercator Fellows}
+Not applicable. 
+
+\subsection{Module Workshop Funding}
+Not applicable. 
+
+\subsection{Module Public Relations Funding}
+Not applicable. 
+
+\subsection{Module Standard Allowance for Gender Equality Measures}
+Not applicable. 
+
+
+
+\end{document}
+
